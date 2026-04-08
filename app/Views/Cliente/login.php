@@ -1,14 +1,12 @@
 <?php helper('url'); ?>
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Anime Template">
-    <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login | Blockbuster</title>
+    <title>Iniciar Sesión | Blockbuster</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -46,15 +44,14 @@
                                 <li>
                                     <a href="<?= base_url('categorias') ?>">CATEGORIAS <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                       
                                         <li><a href="#">Comedia</a></li>
                                         <li><a href="#">Acción</a></li>
                                         <li><a href="#">Amor</a></li>
-                                        <li><a href="<?= base_url('signup') ?>">Sign Up</a></li>
-                                        <li><a href="<?= base_url('login') ?>">Login</a></li>
+                                        <li><a href="<?= base_url('signup') ?>">Registrarse</a></li>
+                                        <li><a href="<?= base_url('login') ?>">Iniciar Sesión</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="<?=  base_url('blog') ?>">SUBSCRIPCIONES</a></li>
+                                <li><a href="<?= base_url('blog') ?>">SUSCRIPCIONES</a></li>
                                 <li><a href="#">CONTACTO</a></li>
                             </ul>
                         </nav>
@@ -76,8 +73,8 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="normal__breadcrumb__text">
-                        <h2>Login</h2>
-                        <p>Welcome to the official Anime blog.</p>
+                        <h2>Iniciar Sesión</h2>
+                        <p>Bienvenido a la plataforma oficial de Blockbuster.</p>
                     </div>
                 </div>
             </div>
@@ -89,25 +86,32 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="login__form">
-                        <h3>Login</h3>
-                        <form action="#" method="post">
+                        <h3>Ingresa a tu cuenta</h3>
+                        
+                        <?php if(session()->getFlashdata('error')): ?>
+                            <div class="alert alert-danger">
+                                <?= session()->getFlashdata('error') ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <form action="<?= base_url('auth/loginProcess') ?>" method="post">
                             <div class="input__item">
-                                <input type="text" placeholder="Email address">
+                                <input type="email" name="email" placeholder="Correo Electrónico" required>
                                 <span class="icon_mail"></span>
                             </div>
                             <div class="input__item">
-                                <input type="password" placeholder="Password">
+                                <input type="password" name="password" placeholder="Contraseña" required>
                                 <span class="icon_lock"></span>
                             </div>
-                            <button type="submit" class="site-btn">Login Now</button>
+                            <button type="submit" class="site-btn">Iniciar Sesión</button>
                         </form>
-                        <a href="#" class="forget_pass">Forgot Your Password?</a>
+                        <a href="#" class="forget_pass">¿Olvidaste tu contraseña?</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="login__register">
-                        <h3>Dont’t Have An Account?</h3>
-                        <a href="<?= base_url('signup') ?>" class="primary-btn">Register Now</a>
+                        <h3>¿No tienes una cuenta?</h3>
+                        <a href="<?= base_url('signup') ?>" class="primary-btn">Regístrate Ahora</a>
                     </div>
                 </div>
             </div>
@@ -116,11 +120,11 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-6">
                         <div class="login__social__links">
-                            <span>or</span>
+                            <span>o</span>
                             <ul>
-                                <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Sign in With Facebook</a></li>
-                                <li><a href="#" class="google"><i class="fa fa-google"></i> Sign in With Google</a></li>
-                                <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Sign in With Twitter</a></li>
+                                <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Iniciar sesión con Facebook</a></li>
+                                <li><a href="#" class="google"><i class="fa fa-google"></i> Iniciar sesión con Google</a></li>
+                                <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Iniciar sesión con Twitter</a></li>
                             </ul>
                         </div>
                     </div>
@@ -145,17 +149,17 @@
                 <div class="col-lg-6">
                     <div class="footer__nav">
                         <ul>
-                            <li><a href="<?= base_url('/') ?>">Homepage</a></li>
-                            <li><a href="<?= base_url('categorias') ?>">Categories</a></li>
-                            <li><a href="#">Our Blog</a></li>
-                            <li><a href="#">Contacts</a></li>
+                            <li><a href="<?= base_url('/') ?>">Inicio</a></li>
+                            <li><a href="<?= base_url('categorias') ?>">Categorías</a></li>
+                            <li><a href="#">Suscripciones</a></li>
+                            <li><a href="#">Contacto</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <p>
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |
-                        This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos los derechos reservados |
+                        Esta plantilla está hecha con <i class="fa fa-heart" aria-hidden="true"></i> por
                         <a href="https://colorlib.com" target="_blank">Colorlib</a>
                     </p>
                 </div>
@@ -167,7 +171,7 @@
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-switch"><i class="icon_close"></i></div>
             <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
+                <input type="text" id="search-input" placeholder="Buscar aquí.....">
             </form>
         </div>
     </div>
