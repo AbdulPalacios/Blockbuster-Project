@@ -41,10 +41,9 @@
                                 <li>
                                     <a href="#">CATÁLOGOS <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="<?= base_url('admin/generos') ?>">Gestión de Géneros</a></li>
-                                        <li><a href="#">Gestión de Planes</a></li>
-                                        <li><a href="#">Gestión de Usuarios</a></li>
-                                        <li><a href="#">Gestión de Streaming</a></li>
+                                        <li><a href="<?= base_url('admin/generos') ?>">Géneros</a></li>
+                                        <li><a href="<?= base_url('admin/planes') ?>">Planes</a></li>
+                                        <li><a href="<?= base_url('admin/usuarios') ?>">Usuarios</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">REPORTES</a></li>

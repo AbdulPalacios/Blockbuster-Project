@@ -49,6 +49,14 @@ $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Adm
     $routes->get('planes/editar/(:num)', 'PlanesController::edit/$1');
     $routes->post('planes/actualizar/(:num)', 'PlanesController::update/$1');
     $routes->get('planes/eliminar/(:num)', 'PlanesController::delete/$1');
+
+    // El CRUD de Usuarios
+    $routes->get('usuarios', 'UsuariosController::index');
+    $routes->get('usuarios/crear', 'UsuariosController::create');
+    $routes->post('usuarios/guardar', 'UsuariosController::store');
+    $routes->get('usuarios/editar/(:num)', 'UsuariosController::edit/$1');
+    $routes->post('usuarios/actualizar/(:num)', 'UsuariosController::update/$1');
+    $routes->get('usuarios/eliminar/(:num)', 'UsuariosController::delete/$1');
 });
 
 // RUTAS OPERADOR 
