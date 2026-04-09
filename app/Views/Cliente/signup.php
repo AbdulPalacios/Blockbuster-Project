@@ -55,7 +55,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="<?=  base_url('blog') ?>">SUBSCRIPCIONES</a></li>
-                                <li><a href="#">CONTACTO</a></li>
+                             
                             </ul>
                         </nav>
                     </div>
@@ -139,19 +139,15 @@
                 <div class="col-lg-6">
                     <div class="footer__nav">
                         <ul>
-                            <li><a href="<?= base_url('/') ?>">Homepage</a></li>
-                            <li><a href="<?= base_url('categorias') ?>">Categories</a></li>
-                            <li><a href="#">Our Blog</a></li>
-                            <li><a href="#">Contacts</a></li>
+                            <li><a href="<?= base_url('/') ?>">INICIO</a></li>
+                            <li><a href="<?= base_url('categorias') ?>">CATEGORIAS</a></li>
+                            <li><a href="<?= base_url('blog') ?>">SUBSCRIPCIONES</a></li>
+                        
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <p>
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |
-                        This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by
-                        <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    </p>
+                    
                 </div>
             </div>
         </div>

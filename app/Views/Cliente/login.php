@@ -52,7 +52,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="<?= base_url('blog') ?>">SUSCRIPCIONES</a></li>
-                                <li><a href="#">CONTACTO</a></li>
+                              
                             </ul>
                         </nav>
                     </div>
@@ -73,8 +73,8 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="normal__breadcrumb__text">
-                        <h2>Iniciar Sesión</h2>
-                        <p>Bienvenido a la plataforma oficial de Blockbuster.</p>
+                        <h2>Blockbuster</h2>
+                        <p>Bienvenido</p>
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="login__form">
-                        <h3>Ingresa a tu cuenta</h3>
+                        <h3>INGRESA A TU CUENTA</h3>
                         
                         <?php if(session()->getFlashdata('error')): ?>
                             <div class="alert alert-danger">
@@ -103,7 +103,7 @@
                                 <input type="password" name="password" placeholder="Contraseña" required>
                                 <span class="icon_lock"></span>
                             </div>
-                            <button type="submit" class="site-btn">Iniciar Sesión</button>
+                            <button type="submit" class="site-btn">Ingresar</button>
                         </form>
                         <a href="#" class="forget_pass">¿Olvidaste tu contraseña?</a>
                     </div>
@@ -111,7 +111,7 @@
                 <div class="col-lg-6">
                     <div class="login__register">
                         <h3>¿No tienes una cuenta?</h3>
-                        <a href="<?= base_url('signup') ?>" class="primary-btn">Regístrate Ahora</a>
+                        <a href="<?= base_url('signup') ?>" class="primary-btn">¡ Regístrate Ahora !</a>
                     </div>
                 </div>
             </div>
@@ -122,9 +122,9 @@
                         <div class="login__social__links">
                             <span>o</span>
                             <ul>
-                                <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Iniciar sesión con Facebook</a></li>
-                                <li><a href="#" class="google"><i class="fa fa-google"></i> Iniciar sesión con Google</a></li>
-                                <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Iniciar sesión con Twitter</a></li>
+                                <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Inicia sesión con Facebook</a></li>
+                                <li><a href="#" class="google"><i class="fa fa-google"></i> Inicia sesión con Google</a></li>
+                                <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Inicia sesión con Twitter</a></li>
                             </ul>
                         </div>
                     </div>
@@ -151,17 +151,13 @@
                         <ul>
                             <li><a href="<?= base_url('/') ?>">Inicio</a></li>
                             <li><a href="<?= base_url('categorias') ?>">Categorías</a></li>
-                            <li><a href="#">Suscripciones</a></li>
+                            <li><a href="<?= base_url('blog') ?>">Suscripciones</a></li>
                             <li><a href="#">Contacto</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <p>
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos los derechos reservados |
-                        Esta plantilla está hecha con <i class="fa fa-heart" aria-hidden="true"></i> por
-                        <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    </p>
+                   
                 </div>
             </div>
         </div>

@@ -38,35 +38,63 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-8">
+                 <div class="col-lg-8">
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li><a href="<?= base_url('/') ?>">INICIO</a></li>
+                                <li class="active"><a href="<?= base_url('/') ?>">INICIO</a></li>
                                 <li>
-                                    <a href="<?= base_url('categorias') ?>">CATEGORIA <span class="arrow_carrot-down"></span></a>
+                                    <a href="<?= base_url('categorias') ?>">CATEGORIAS <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                       
                                         <li><a href="#">Comedia</a></li>
-                                        <li><a href="#">Accion</a></li>
+                                        <li><a href="#">Acción</a></li>
                                         <li><a href="#">Amor</a></li>
-                                        <li><a href="<?= base_url('signup') ?>">Sign Up</a></li>
-                                        <li><a href="<?= base_url('login') ?>">Login</a></li>
+
+                                        <?php if (!session()->get('isLoggedIn')): ?>
+                                            <li><a href="<?= base_url('signup') ?>">Sign Up</a></li>
+                                            <li><a href="<?= base_url('login') ?>">Login</a></li>
+                                        <?php else: ?>
+                                            <li><a href="<?= base_url('perfil') ?>">Hola, <?= esc(session()->get('nombre')) ?></a></li>
+                                            <li><a href="<?= base_url('logout') ?>">Cerrar sesión</a></li>
+                                        <?php endif; ?>
                                     </ul>
                                 </li>
-                                <li class="active"><a href="<?= base_url('blog') ?>">SUBSCRIPCIONES</a></li>
-                                <li><a href="#">CONTACTO</a></li>
+                                <li><a href="<?= base_url('blog') ?>">SUBSCRIPCIONES</a></li>
+                               <?php if (session()->get('isLoggedIn')): ?>
+                             <li><a href="<?= base_url('perfil') ?>">PERFIL</a></li>
+                            <?php endif; ?>
                             </ul>
                         </nav>
                     </div>
                 </div>
-                <div class="col-lg-2">
-                    <div class="header__right">
-                        <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                        <a href="<?= base_url('login') ?>"><span class="icon_profile"></span></a>
-                    </div>
+                
+               <div class="col-lg-2">
+                   <div class="header__right" style="display: flex; align-items: center; gap: 15px;">
+    <a href="#" class="search-switch"><span class="icon_search"></span></a>
+
+    <?php if (session()->get('isLoggedIn')): ?>
+        <span style="color: white; font-weight: 600; font-size: 14px; white-space: nowrap;">
+            <?= esc(session()->get('nombre')) ?>
+        </span>
+
+        <a href="<?= base_url('logout') ?>" style="
+            background: #e53637;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+        ">
+            SALIR
+        </a>
+    <?php else: ?>
+        <a href="<?= base_url('login') ?>">
+            <span class="icon_profile"></span>
+        </a>
+    <?php endif; ?>
+</div>
                 </div>
-            </div>
             <div id="mobile-menu-wrap"></div>
         </div>
     </header>
@@ -210,19 +238,17 @@
                 <div class="col-lg-6">
                     <div class="footer__nav">
                         <ul>
-                            <li><a href="<?= base_url('/') ?>">Homepage</a></li>
-                            <li><a href="<?= base_url('categorias') ?>">Categories</a></li>
-                            <li class="active"><a href="<?= base_url('blog') ?>">Our Blog</a></li>
-                            <li><a href="#">Contacts</a></li>
+                            <li><a href="<?= base_url('/') ?>">INICIO</a></li>
+                            <li><a href="<?= base_url('categorias') ?>">CATEGORIAS</a></li>
+                            <li class="active"><a href="<?= base_url('blog') ?>">SUBSCRIPCIONES</a></li>
+                           <?php if (session()->get('isLoggedIn')): ?>
+                             <li><a href="<?= base_url('perfil') ?>">PERFIL</a></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <p>
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |
-                        This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by
-                        <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    </p>
+                  
                 </div>
             </div>
         </div>
