@@ -6,20 +6,25 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-// RUTA PRINCIPAL 
+// RUTA PRINCIPAL
 $routes->get('/', 'Cliente\Inicio_vistas::inicio');
 
-// RUTAS DE CLIENTE
-$routes->get('login', 'Cliente\Inicio_vistas::login');
+// RUTAS PÚBLICAS
+$routes->get('login', 'AuthController::index');
 $routes->get('signup', 'Cliente\Inicio_vistas::signup');
 $routes->get('categorias', 'Cliente\Inicio_vistas::categorias');
 $routes->get('blog', 'Cliente\Inicio_vistas::blog');
+$routes->get('perfil', 'Cliente\Inicio_vistas::perfil');
 
 
-// Rutas de Autenticación
-$routes->get('login', 'AuthController::index');
+// RUTAS DE AUTENTICACIÓN
 $routes->post('auth/loginProcess', 'AuthController::loginProcess');
 $routes->get('logout', 'AuthController::logout');
 
-// Rutas de prueba para la redirección (para que no te de error 404 al entrar)
+// RUTAS POR ROL
 $routes->get('admin/dashboard', 'Home::index');
+$routes->get('operador/dashboard', 'Home::index');
+
+//RUTAS CLIENTE PERFIL
+$routes->get('perfil', 'Cliente\Perfil::index');
+$routes->post('perfil/actualizar', 'Cliente\Perfil::actualizar');

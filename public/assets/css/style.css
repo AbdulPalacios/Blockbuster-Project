@@ -331,7 +331,10 @@ ol {
 }
 
 .header__logo {
-	padding: 20px 0 17px;
+    padding: 0 !important;
+    margin-top: -5px !important;
+    position: relative;
+    top: -5px;
 }
 
 .header__logo a {
