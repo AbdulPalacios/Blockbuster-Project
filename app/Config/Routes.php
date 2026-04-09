@@ -41,6 +41,14 @@ $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Adm
     $routes->get('generos/editar/(:num)', 'GenerosController::edit/$1');
     $routes->post('generos/actualizar/(:num)', 'GenerosController::update/$1');
     $routes->get('generos/eliminar/(:num)', 'GenerosController::delete/$1');
+
+    // El CRUD de Planes (¡Aquí están los cables conectados!)
+    $routes->get('planes', 'PlanesController::index');
+    $routes->get('planes/crear', 'PlanesController::create');
+    $routes->post('planes/guardar', 'PlanesController::store');
+    $routes->get('planes/editar/(:num)', 'PlanesController::edit/$1');
+    $routes->post('planes/actualizar/(:num)', 'PlanesController::update/$1');
+    $routes->get('planes/eliminar/(:num)', 'PlanesController::delete/$1');
 });
 
 // RUTAS OPERADOR 

@@ -1,42 +1,58 @@
+<?php helper('url'); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title><?= isset($genero) ? 'Editar' : 'Crear' ?> Género</title>
-    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
+    <title><?= isset($genero) ? 'Editar' : 'Crear' ?> Género | Admin Blockbuster</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>" type="text/css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>" type="text/css">
+    <style>
+        .dark-form label { color: #b7b7b7; font-weight: 600; }
+        .dark-input { background-color: #0b0c2a; color: white; border: 1px solid #333; }
+        .dark-input:focus { background-color: #1a1e27; color: white; border-color: #e53637; box-shadow: none; }
+    </style>
 </head>
-<body class="p-4 bg-light">
-    <div class="container bg-white p-4 rounded shadow-sm" style="max-width: 600px;">
-        
-        <h2 class="mb-4"><?= isset($genero) ? 'Editar Género' : 'Nuevo Género' ?></h2>
-
-        <form action="<?= isset($genero) ? base_url('admin/generos/actualizar/'.$genero->id_genero) : base_url('admin/generos/guardar') ?>" method="POST">
-            
-            <div class="form-group">
-                <label>Nombre del Género</label>
-                <input type="text" name="nombre_genero" class="form-control" required 
-                       value="<?= isset($genero) ? $genero->nombre_genero : '' ?>">
+<body style="background-color: #0b0c2a; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    
+    <div class="container" style="max-width: 600px;">
+        <div class="card shadow-lg" style="background-color: #1a1e27; border: 1px solid #333; border-radius: 10px;">
+            <div class="card-header text-center" style="background-color: #e53637; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                <h3 class="mb-0 mt-2" style="font-family: 'Oswald', sans-serif; color: white;"><?= isset($genero) ? 'Editar Género' : 'Nuevo Género' ?></h3>
             </div>
+            <div class="card-body p-4 dark-form">
+                
+                <form action="<?= isset($genero) ? base_url('admin/generos/actualizar/'.$genero->id_genero) : base_url('admin/generos/guardar') ?>" method="POST">
+                    
+                    <div class="form-group">
+                        <label>Nombre del Género</label>
+                        <input type="text" name="nombre_genero" class="form-control dark-input" required 
+                               value="<?= isset($genero) ? $genero->nombre_genero : '' ?>">
+                    </div>
 
-            <div class="form-group">
-                <label>Descripción</label>
-                <textarea name="descripcion_genero" class="form-control" rows="3"><?= isset($genero) ? $genero->descripcion_genero : '' ?></textarea>
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea name="descripcion_genero" class="form-control dark-input" rows="4"><?= isset($genero) ? $genero->descripcion_genero : '' ?></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Estatus</label>
+                        <select name="estatus_genero" class="form-control dark-input d-block" required>
+                            <option value="1" <?= (isset($genero) && $genero->estatus_genero == 1) ? 'selected' : '' ?>>Habilitado</option>
+                            <option value="-1" <?= (isset($genero) && $genero->estatus_genero == -1) ? 'selected' : '' ?>>Deshabilitado</option>
+                        </select>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <button type="submit" class="btn btn-success" style="background-color: #1ed760; border: none; font-weight: bold; padding: 10px 30px;">Guardar</button>
+                        <a href="<?= base_url('admin/generos') ?>" class="btn btn-secondary ml-2" style="background-color: #333; border: none; padding: 10px 30px; color: white;">Cancelar</a>
+                    </div>
+                </form>
+
             </div>
-
-            <div class="form-group">
-                <label>Estatus</label>
-                <select name="estatus_genero" class="form-control" required>
-                    <option value="1" <?= (isset($genero) && $genero->estatus_genero == 1) ? 'selected' : '' ?>>Habilitado</option>
-                    <option value="-1" <?= (isset($genero) && $genero->estatus_genero == -1) ? 'selected' : '' ?>>Deshabilitado</option>
-                </select>
-            </div>
-
-            <div class="mt-4">
-                <button type="submit" class="btn btn-success">Guardar</button>
-                <a href="<?= base_url('admin/generos') ?>" class="btn btn-secondary">Cancelar</a>
-            </div>
-        </form>
-
+        </div>
     </div>
+
 </body>
 </html>

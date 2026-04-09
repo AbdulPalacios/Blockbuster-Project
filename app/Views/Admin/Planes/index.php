@@ -3,7 +3,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Gestión de Géneros | Admin Blockbuster</title>
+    <title>Gestión de Planes | Admin Blockbuster</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>" type="text/css">
@@ -52,8 +52,8 @@
     <section class="normal-breadcrumb set-bg" data-setbg="<?= base_url('assets/img/normal-breadcrumb.jpg') ?>">
         <div class="container text-center">
             <div class="normal__breadcrumb__text">
-                <h2>Gestión de Géneros</h2>
-                <p>Administra las categorías de la plataforma.</p>
+                <h2>Gestión de Planes</h2>
+                <p>Administra las suscripciones y precios.</p>
             </div>
         </div>
     </section>
@@ -67,12 +67,12 @@
             <div class="row mb-4 align-items-center">
                 <div class="col-lg-8 col-md-8 col-sm-8">
                     <div class="section-title mb-0">
-                        <h4>Lista de Géneros</h4>
+                        <h4>Lista de Planes</h4>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 text-right">
-                    <a href="<?= base_url('admin/generos/crear') ?>" class="btn" style="background: transparent; border: 2px solid #e53637; color: white; font-weight: bold; padding: 8px 20px; border-radius: 4px;">
-                        <i class="fa fa-plus"></i> Nuevo Género
+                     <a href="<?= base_url('admin/planes/crear') ?>" class="btn" style="background: transparent; border: 2px solid #e53637; color: white; font-weight: bold; padding: 8px 20px; border-radius: 4px;">
+                        <i class="fa fa-plus"></i> Nuevo Plan
                     </a>
                 </div>
             </div>
@@ -81,19 +81,21 @@
                 <table class="table table-dark table-hover" style="background-color: #1a1e27;">
                     <thead style="background-color: #e53637;">
                         <tr>
-                            <th>ID</th><th>Nombre</th><th>Descripción</th><th>Estatus</th><th class="text-center">Acciones</th>
+                            <th>ID</th><th>Nombre</th><th>Precio</th><th>Límite</th><th>Tipo</th><th>Estatus</th><th class="text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($generos as $g): ?>
+                        <?php foreach($planes as $p): ?>
                         <tr>
-                            <td><?= $g->id_genero ?></td>
-                            <td><strong><?= $g->nombre_genero ?></strong></td>
-                            <td><?= $g->descripcion_genero ?></td>
-                            <td><?= $g->estatus_genero == 1 ? '<span class="badge" style="background-color: #1ed760;">Habilitado</span>' : '<span class="badge badge-secondary">Deshabilitado</span>' ?></td>
+                            <td><?= $p->id_plan ?></td>
+                            <td><strong><?= $p->nombre_plan ?></strong></td>
+                            <td style="color: #1ed760; font-weight: bold;">$<?= number_format($p->precio_plan, 2) ?></td>
+                            <td><?= $p->cantidad_limite_plan ?> Pantallas</td>
+                            <td><?= $p->tipo_plan ?></td>
+                            <td><?= $p->estatus_plan == 1 ? '<span class="badge" style="background-color: #1ed760;">Activo</span>' : '<span class="badge badge-secondary">Inactivo</span>' ?></td>
                             <td class="text-center">
-                                <a href="<?= base_url('admin/generos/editar/'.$g->id_genero) ?>" class="btn btn-sm btn-warning" style="color: #000; font-weight: bold;"><i class="fa fa-edit"></i></a>
-                                <a href="<?= base_url('admin/generos/eliminar/'.$g->id_genero) ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro?');"><i class="fa fa-trash"></i></a>
+                                <a href="<?= base_url('admin/planes/editar/'.$p->id_plan) ?>" class="btn btn-sm btn-warning" style="color: #000; font-weight: bold;"><i class="fa fa-edit"></i></a>
+                                <a href="<?= base_url('admin/planes/eliminar/'.$p->id_plan) ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar?');"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
