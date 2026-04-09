@@ -57,6 +57,14 @@ $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Adm
     $routes->get('usuarios/editar/(:num)', 'UsuariosController::edit/$1');
     $routes->post('usuarios/actualizar/(:num)', 'UsuariosController::update/$1');
     $routes->get('usuarios/eliminar/(:num)', 'UsuariosController::delete/$1');
+
+    // 4. El CRUD de Streaming
+    $routes->get('streaming', 'StreamingController::index');
+    $routes->get('streaming/crear', 'StreamingController::create');
+    $routes->post('streaming/guardar', 'StreamingController::store');
+    $routes->get('streaming/editar/(:num)', 'StreamingController::edit/$1');
+    $routes->post('streaming/actualizar/(:num)', 'StreamingController::update/$1');
+    $routes->get('streaming/eliminar/(:num)', 'StreamingController::delete/$1');
 });
 
 // RUTAS OPERADOR 

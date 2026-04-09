@@ -44,6 +44,7 @@
                                         <li><a href="<?= base_url('admin/generos') ?>">Géneros</a></li>
                                         <li><a href="<?= base_url('admin/planes') ?>">Planes</a></li>
                                         <li><a href="<?= base_url('admin/usuarios') ?>">Usuarios</a></li>
+                                        <li><a href="<?= base_url('admin/streaming') ?>">Streaming</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">REPORTES</a></li>

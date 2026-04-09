@@ -3,13 +3,13 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Gestión de Planes | Admin Blockbuster</title>
+    <title>Catálogo Streaming | Admin Blockbuster</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>" type="text/css">
-    <link rel="stylesheet" href="<?= base_url('assets/css/font-awesome.min.css') ?>" type="text/css">
-    <link rel="stylesheet" href="<?= base_url('assets/css/elegant-icons.css') ?>" type="text/css">
-    <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>" type="text/css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/font-awesome.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/elegant-icons.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
 </head>
 <body>
     <header class="header">
@@ -54,8 +54,8 @@
     <section class="normal-breadcrumb set-bg" data-setbg="<?= base_url('assets/img/normal-breadcrumb.jpg') ?>">
         <div class="container text-center">
             <div class="normal__breadcrumb__text">
-                <h2>Gestión de Planes</h2>
-                <p>Administra las suscripciones y precios.</p>
+                <h2>Catálogo de Streaming</h2>
+                <p>Administra las películas, series y sus portadas.</p>
             </div>
         </div>
     </section>
@@ -69,35 +69,40 @@
             <div class="row mb-4 align-items-center">
                 <div class="col-lg-8 col-md-8 col-sm-8">
                     <div class="section-title mb-0">
-                        <h4>Lista de Planes</h4>
+                        <h4>Lista de Contenido</h4>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 text-right">
-                     <a href="<?= base_url('admin/planes/crear') ?>" class="btn" style="background: transparent; border: 2px solid #e53637; color: white; font-weight: bold; padding: 8px 20px; border-radius: 4px;">
-                        <i class="fa fa-plus"></i> Nuevo Plan
+                    <a href="<?= base_url('admin/streaming/crear') ?>" class="btn" style="background: transparent; border: 2px solid #e53637; color: white; font-weight: bold; padding: 8px 20px; border-radius: 4px;">
+                        <i class="fa fa-film"></i> Nuevo Título
                     </a>
                 </div>
             </div>
 
             <div class="table-responsive">
-                <table class="table table-dark table-hover" style="background-color: #1a1e27;">
+                <table class="table table-dark table-hover align-middle" style="background-color: #1a1e27;">
                     <thead style="background-color: #e53637;">
                         <tr>
-                            <th>ID</th><th>Nombre</th><th>Precio</th><th>Límite</th><th>Tipo</th><th>Estatus</th><th class="text-center">Acciones</th>
+                            <th>Portada</th><th>Título</th><th>Clasificación</th><th>Temporadas / Duración</th><th>Estatus</th><th class="text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($planes as $p): ?>
+                        <?php foreach($streaming as $s): ?>
                         <tr>
-                            <td><?= $p->id_plan ?></td>
-                            <td><strong><?= $p->nombre_plan ?></strong></td>
-                            <td style="color: #1ed760; font-weight: bold;">$<?= number_format($p->precio_plan, 2) ?></td>
-                            <td><?= $p->cantidad_limite_plan ?> Pantallas</td>
-                            <td><?= $p->tipo_plan ?></td>
-                            <td><?= $p->estatus_plan == 1 ? '<span class="badge" style="background-color: #1ed760;">Activo</span>' : '<span class="badge badge-secondary">Inactivo</span>' ?></td>
+                            <td>
+                                <?php if(!empty($s->caratula_streaming)): ?>
+                                    <img src="<?= base_url('uploads/portadas/'.$s->caratula_streaming) ?>" alt="Portada" style="width: 50px; height: 75px; object-fit: cover; border-radius: 4px;">
+                                <?php else: ?>
+                                    <div style="width: 50px; height: 75px; background: #333; border-radius: 4px; display:flex; align-items:center; justify-content:center;"><i class="fa fa-image" style="color:#555;"></i></div>
+                                <?php endif; ?>
+                            </td>
+                            <td><strong><?= $s->nombre_streaming ?></strong><br><small style="color: #b7b7b7;"><?= $s->fecha_estreno_streaming ?></small></td>
+                            <td><span class="badge badge-warning" style="color: #000;"><?= $s->clasificacion_streaming ?></span></td>
+                            <td><?= $s->temporadas_streaming > 0 ? $s->temporadas_streaming . ' Temp.' : $s->duracion_streaming ?></td>
+                            <td><?= $s->estatus_streaming == 1 ? '<span class="badge" style="background-color: #1ed760;">Público</span>' : '<span class="badge badge-secondary">Oculto</span>' ?></td>
                             <td class="text-center">
-                                <a href="<?= base_url('admin/planes/editar/'.$p->id_plan) ?>" class="btn btn-sm btn-warning" style="color: #000; font-weight: bold;"><i class="fa fa-edit"></i></a>
-                                <a href="<?= base_url('admin/planes/eliminar/'.$p->id_plan) ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar?');"><i class="fa fa-trash"></i></a>
+                                <a href="<?= base_url('admin/streaming/editar/'.$s->id_streaming) ?>" class="btn btn-sm btn-warning" style="color: #000; font-weight: bold;"><i class="fa fa-edit"></i></a>
+                                <a href="<?= base_url('admin/streaming/eliminar/'.$s->id_streaming) ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Deseas eliminar este título?');"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
