@@ -110,39 +110,39 @@
 
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <a href="#">
+                                    <a href="<?= base_url('admin/streaming') ?>">
                                         <div class="product__item__pic set-bg" style="background-color: #1a1e27; display: flex; align-items: center; justify-content: center; border: 2px solid #e53637; border-radius: 5px;">
                                             <i class="fa fa-film" style="font-size: 60px; color: #e53637;"></i>
                                         </div>
                                     </a>
                                     <div class="product__item__text text-center">
-                                        <h5><a href="#">Contenido Streaming</a></h5>
+                                        <h5><a href="<?= base_url('admin/streaming') ?>">Contenido Streaming</a></h5>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <a href="#">
+                                    <a href="<?= base_url('admin/usuarios') ?>">
                                         <div class="product__item__pic set-bg" style="background-color: #1a1e27; display: flex; align-items: center; justify-content: center; border: 2px solid #e53637; border-radius: 5px;">
                                             <i class="fa fa-users" style="font-size: 60px; color: #e53637;"></i>
                                         </div>
                                     </a>
                                     <div class="product__item__text text-center">
-                                        <h5><a href="#">Gestión de Usuarios</a></h5>
+                                        <h5><a href="<?= base_url('admin/usuarios') ?>">Gestión de Usuarios</a></h5>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <a href="#">
+                                    <a href="<?= base_url('admin/planes') ?>">
                                         <div class="product__item__pic set-bg" style="background-color: #1a1e27; display: flex; align-items: center; justify-content: center; border: 2px solid #e53637; border-radius: 5px;">
                                             <i class="fa fa-credit-card" style="font-size: 60px; color: #e53637;"></i>
                                         </div>
                                     </a>
                                     <div class="product__item__text text-center">
-                                        <h5><a href="#">Planes de Suscripción</a></h5>
+                                        <h5><a href="<?= base_url('admin/planes') ?>">Planes de Suscripción</a></h5>
                                     </div>
                                 </div>
                             </div>
