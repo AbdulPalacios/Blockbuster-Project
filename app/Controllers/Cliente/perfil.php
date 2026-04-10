@@ -7,13 +7,30 @@ use App\Controllers\BaseController;
 class Perfil extends BaseController
 {
     public function index()
-    {
-        if (!session()->get('isLoggedIn')) {
-            return redirect()->to('/login');
-        }
-
-        return view('Cliente/perfil');
+{
+    if (!session()->get('isLoggedIn')) {
+        return redirect()->to('/login');
     }
+
+    $db = \Config\Database::connect();
+
+    $plan = $db->query("
+        SELECT 
+            planes.nombre_plan,
+            planes.cantidad_limite_plan,
+            planes.tipo_plan,
+            usuarios_planes.fecha_registro_plan,
+            usuarios_planes.fecha_fin_plan
+        FROM usuarios_planes
+        INNER JOIN planes ON planes.id_plan = usuarios_planes.id_plan
+        WHERE usuarios_planes.id_usuario = 3
+        LIMIT 1
+    ")->getRow();
+
+ return view('Cliente/perfil', [
+    'plan' => $plan
+]);
+}
 
     public function actualizar()
     {

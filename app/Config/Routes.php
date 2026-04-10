@@ -14,7 +14,6 @@ $routes->get('login', 'AuthController::index');
 $routes->get('signup', 'Cliente\Inicio_vistas::signup');
 $routes->get('categorias', 'Cliente\Inicio_vistas::categorias');
 $routes->get('blog', 'Cliente\Inicio_vistas::blog');
-$routes->get('perfil', 'Cliente\Inicio_vistas::perfil');
 
 
 // RUTAS DE AUTENTICACIÓN
@@ -28,3 +27,4 @@ $routes->get('operador/dashboard', 'Home::index');
 //RUTAS CLIENTE PERFIL
 $routes->get('perfil', 'Cliente\Perfil::index');
 $routes->post('perfil/actualizar', 'Cliente\Perfil::actualizar');
+$routes->post('suscripciones/solicitar', 'Cliente\Suscripciones::solicitarCambio');
