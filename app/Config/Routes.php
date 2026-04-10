@@ -25,9 +25,10 @@ $routes->get('logout', 'AuthController::logout');
 // RUTAS PRIVADAS (Requieren sesión activa)
 // --------------------------------------------------------------------
 
-// RUTAS CLIENTE PERFIL
+// RUTAS CLIENTE PERFIL Y SUSCRIPCIONES
 $routes->get('perfil', 'Cliente\Perfil::index');
 $routes->post('perfil/actualizar', 'Cliente\Perfil::actualizar');
+$routes->post('suscripciones/solicitar', 'Cliente\Suscripciones::solicitarCambio');
 
 // RUTAS ADMINISTRADOR
 $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Admin'], function($routes) {
@@ -59,7 +60,7 @@ $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Adm
     $routes->post('usuarios/actualizar/(:num)', 'UsuariosController::update/$1');
     $routes->get('usuarios/eliminar/(:num)', 'UsuariosController::delete/$1');
 
-    // 4. El CRUD de Streaming
+    // El CRUD de Streaming
     $routes->get('streaming', 'StreamingController::index');
     $routes->get('streaming/crear', 'StreamingController::create');
     $routes->post('streaming/guardar', 'StreamingController::store');
