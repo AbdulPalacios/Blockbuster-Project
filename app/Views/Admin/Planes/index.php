@@ -83,7 +83,7 @@
                 <table class="table table-dark table-hover" style="background-color: #1a1e27;">
                     <thead style="background-color: #e53637;">
                         <tr>
-                            <th>ID</th><th>Nombre</th><th>Precio</th><th>Límite</th><th>Tipo</th><th>Estatus</th><th class="text-center">Acciones</th>
+                            <th>ID</th><th>Nombre</th><th>Precio</th><th>Límite</th><th>Tipo Plan Semanal</th><th>Estatus</th><th class="text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,7 +92,7 @@
                             <td><?= $p->id_plan ?></td>
                             <td><strong><?= $p->nombre_plan ?></strong></td>
                             <td style="color: #1ed760; font-weight: bold;">$<?= number_format($p->precio_plan, 2) ?></td>
-                            <td><?= $p->cantidad_limite_plan ?> Pantallas</td>
+                            <td><?= $p->cantidad_limite_plan ?> Peliculas/series</td>
                             <td><?= $p->tipo_plan ?></td>
                             <td><?= $p->estatus_plan == 1 ? '<span class="badge" style="background-color: #1ed760;">Activo</span>' : '<span class="badge badge-secondary">Inactivo</span>' ?></td>
                             <td class="text-center">
