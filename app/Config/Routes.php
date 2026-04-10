@@ -17,6 +17,7 @@ $routes->get('blog', 'Cliente\Inicio_vistas::blog');
 
 // RUTAS DE AUTENTICACIÓN
 $routes->post('auth/loginProcess', 'AuthController::loginProcess');
+$routes->post('auth/registrarCliente', 'AuthController::registrarCliente');
 $routes->get('logout', 'AuthController::logout');
 
 

@@ -67,4 +67,31 @@ class AuthController extends BaseController
         session()->destroy();
         return redirect()->to('/');
     }
+
+    public function registrarCliente()
+    {
+        $usuariosModel = new \App\Models\UsuariosModel();
+
+        $email = $this->request->getPost('email_usuario');
+
+        // Comprobar si el correo ya existe
+        $existeUsuario = $usuariosModel->where('email_usuario', $email)->first();
+        if ($existeUsuario) {
+            return redirect()->to('signup')->with('error', 'Este correo electrónico ya está registrado. Intenta iniciar sesión.');
+        }
+
+        $datosAGuardar = [
+            'nombre_usuario'  => $this->request->getPost('nombre_usuario'),
+            'ap_usuario'      => $this->request->getPost('ap_usuario'),
+            'email_usuario'   => $email,
+            // Encriptamos la contraseña en SHA-256
+            'password_usuario'=> hash('sha256', $this->request->getPost('password_usuario')),
+            'id_rol'          => 58, // Forzamos el rol 58 (Cliente) para que no se registren como administradores
+            'estatus_usuario' => 1   // Lo activamos inmediatamente
+        ];
+
+        $usuariosModel->insert($datosAGuardar);
+
+        return redirect()->to('login')->with('success', '¡Cuenta creada exitosamente! Ya puedes iniciar sesión.');
+    }
 }

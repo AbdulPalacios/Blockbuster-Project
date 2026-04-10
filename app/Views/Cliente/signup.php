@@ -1,14 +1,14 @@
 <?php helper('url'); ?>
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Anime Template">
-    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="description" content="Blockbuster Template">
+    <meta name="keywords" content="Peliculas, series, streaming, blockbuster">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up | Blockbuster</title>
+    <title>Registro | Blockbuster</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
                 <div class="col-lg-2">
                     <div class="header__logo">
                         <a href="<?= base_url('/') ?>">
-                            <img src="<?= base_url('assets/img/logo.png') ?>" alt="">
+                            <img src="<?= base_url('assets/img/logo.png') ?>" alt="Logo Blockbuster">
                         </a>
                     </div>
                 </div>
@@ -44,18 +44,16 @@
                             <ul>
                                 <li><a href="<?= base_url('/') ?>">INICIO</a></li>
                                 <li>
-                                    <a href="<?= base_url('categorias') ?>">CATEGORIA <span class="arrow_carrot-down"></span></a>
+                                    <a href="<?= base_url('categorias') ?>">CATEGORÍAS <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        
                                         <li><a href="#">Comedia</a></li>
                                         <li><a href="#">Acción</a></li>
                                         <li><a href="#">Amor</a></li>
-                                        <li><a href="<?= base_url('signup') ?>">Sign Up</a></li>
-                                        <li><a href="<?= base_url('login') ?>">Login</a></li>
+                                        <li><a href="<?= base_url('signup') ?>">Registro</a></li>
+                                        <li><a href="<?= base_url('login') ?>">Iniciar Sesión</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="<?=  base_url('blog') ?>">SUBSCRIPCIONES</a></li>
-                             
+                                <li><a href="<?= base_url('blog') ?>">SUSCRIPCIONES</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -76,8 +74,8 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="normal__breadcrumb__text">
-                        <h2>Sign Up</h2>
-                        <p>Welcome to the official Anime blog.</p>
+                        <h2>Crear Cuenta</h2>
+                        <p>Únete a Blockbuster y disfruta del mejor catálogo de streaming.</p>
                     </div>
                 </div>
             </div>
@@ -86,36 +84,52 @@
 
     <section class="signup spad">
         <div class="container">
+            
+            <?php if(session()->getFlashdata('error')): ?>
+                <div class="alert alert-danger" style="background-color: #e53637; color: white; border: none;">
+                    <?= session()->getFlashdata('error') ?>
+                </div>
+            <?php endif; ?>
+
             <div class="row">
                 <div class="col-lg-6">
                     <div class="login__form">
-                        <h3>Sign Up</h3>
-                        <form action="#" method="post">
+                        <h3>Regístrate</h3>
+                        <form action="<?= base_url('auth/registrarCliente') ?>" method="POST">
+                            
                             <div class="input__item">
-                                <input type="email" placeholder="Email address">
-                                <span class="icon_mail"></span>
-                            </div>
-                            <div class="input__item">
-                                <input type="text" placeholder="Your Name">
+                                <input type="text" name="nombre_usuario" placeholder="Nombre(s)" required>
                                 <span class="icon_profile"></span>
                             </div>
+                            
                             <div class="input__item">
-                                <input type="password" placeholder="Password">
+                                <input type="text" name="ap_usuario" placeholder="Apellidos" required>
+                                <span class="icon_profile"></span>
+                            </div>
+
+                            <div class="input__item">
+                                <input type="email" name="email_usuario" placeholder="Correo Electrónico" required>
+                                <span class="icon_mail"></span>
+                            </div>
+                            
+                            <div class="input__item">
+                                <input type="password" name="password_usuario" placeholder="Contraseña" required>
                                 <span class="icon_lock"></span>
                             </div>
-                            <button type="submit" class="site-btn">Register Now</button>
+                            
+                            <button type="submit" class="site-btn">Registrarse Ahora</button>
                         </form>
-                        <h5>Already have an account? <a href="<?= base_url('login') ?>">Log In!</a></h5>
+                        <h5>¿Ya tienes una cuenta? <a href="<?= base_url('login') ?>">¡Inicia Sesión!</a></h5>
                     </div>
                 </div>
 
                 <div class="col-lg-6">
                     <div class="login__social__links">
-                        <h3>Login With:</h3>
+                        <h3>Registrarse con:</h3>
                         <ul>
-                            <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Sign in With Facebook</a></li>
-                            <li><a href="#" class="google"><i class="fa fa-google"></i> Sign in With Google</a></li>
-                            <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Sign in With Twitter</a></li>
+                            <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Registrarse con Facebook</a></li>
+                            <li><a href="#" class="google"><i class="fa fa-google"></i> Registrarse con Google</a></li>
+                            <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Registrarse con Twitter</a></li>
                         </ul>
                     </div>
                 </div>
@@ -140,15 +154,12 @@
                     <div class="footer__nav">
                         <ul>
                             <li><a href="<?= base_url('/') ?>">INICIO</a></li>
-                            <li><a href="<?= base_url('categorias') ?>">CATEGORIAS</a></li>
-                            <li><a href="<?= base_url('blog') ?>">SUBSCRIPCIONES</a></li>
-                        
+                            <li><a href="<?= base_url('categorias') ?>">CATEGORÍAS</a></li>
+                            <li><a href="<?= base_url('blog') ?>">SUSCRIPCIONES</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    
-                </div>
+                <div class="col-lg-3"></div>
             </div>
         </div>
     </footer>
@@ -157,7 +168,7 @@
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-switch"><i class="icon_close"></i></div>
             <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
+                <input type="text" id="search-input" placeholder="Buscar aquí.....">
             </form>
         </div>
     </div>
