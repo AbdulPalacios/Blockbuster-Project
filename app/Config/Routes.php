@@ -69,7 +69,16 @@ $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Adm
     $routes->get('streaming/eliminar/(:num)', 'StreamingController::delete/$1');
 });
 
-// RUTAS OPERADOR 
+// RUTAS OPERADOR
 $routes->group('operador', ['filter' => 'auth', 'namespace' => 'App\Controllers\Operador'], function($routes) {
     $routes->get('dashboard', 'DashboardController::index'); 
+
+    // Módulo Validar Clientes
+    $routes->get('clientes', 'ClientesController::index');
+    $routes->get('clientes/validar/(:num)/(:segment)', 'ClientesController::validar/$1/$2');
+
+    // Módulo Aprobar Pagos
+    $routes->get('pagos', 'PagosController::index');
+    $routes->get('pagos/aprobar/(:num)/(:num)/(:num)', 'PagosController::aprobar/$1/$2/$3');
+    $routes->get('pagos/rechazar/(:num)', 'PagosController::rechazar/$1');
 });

@@ -43,12 +43,11 @@
 
                     <div class="form-group">
                         <label>Tipo de Plan</label>
-                        <select name="tipo_plan" class="form-control dark-input d-block" required>
-                            <option value="Mensual" <?= (isset($plan) && $plan->tipo_plan == 'Mensual') ? 'selected' : '' ?>>Mensual</option>
-                            <option value="Anual" <?= (isset($plan) && $plan->tipo_plan == 'Anual') ? 'selected' : '' ?>>Anual</option>
-                            <option value="Semestral" <?= (isset($plan) && $plan->tipo_plan == 'Semestral') ? 'selected' : '' ?>>Semestral</option>
-                            <option value="Trimestral" <?= (isset($plan) && $plan->tipo_plan == 'Trimestral') ? 'selected' : '' ?>>Trimestral</option>
-                        </select>
+                        <div class="form-group">
+                            <label>Duración del Plan (En Semanas)</label>
+                            <input type="number" name="tipo_plan" class="form-control dark-input d-block" min="1" required value="<?= isset($plan) ? $plan->tipo_plan : '' ?>">
+                            <small style="color: #b7b7b7;">Ejemplo: Escribe 4 para un mes, 52 para un año.</small>
+                        </div>
                     </div>
 
                     <div class="form-group">

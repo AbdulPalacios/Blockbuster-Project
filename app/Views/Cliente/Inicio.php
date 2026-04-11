@@ -61,10 +61,25 @@
                                     </ul>
                                 </li>
                                 <li><a href="<?= base_url('blog') ?>">SUBSCRIPCIONES</a></li>
-                              <?php if (session()->get('isLoggedIn')): ?>
-                             <li><a href="<?= base_url('perfil') ?>">PERFIL</a></li>
-                            <?php endif; ?>
-                            </ul>
+                                
+                                <?php if (session()->get('isLoggedIn')): ?>
+                                    <li><a href="<?= base_url('perfil') ?>">PERFIL</a></li>
+                                <?php endif; ?>
+
+                                <?php if(session()->get('id_rol') == 745): ?>
+                                    <li>
+                                        <a href="<?= base_url('admin/dashboard') ?>" style="color: font-weight: 800;">
+                                            VOLVER AL ADMIN
+                                        </a>
+                                    </li>
+                                <?php elseif(session()->get('id_rol') == 125): ?>
+                                    <li>
+                                        <a href="<?= base_url('operador/dashboard') ?>" style="color: font-weight: 800;">
+                                             VOLVER AL PANEL
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                                </ul>
                         </nav>
                     </div>
                 </div>

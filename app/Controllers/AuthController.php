@@ -87,7 +87,7 @@ class AuthController extends BaseController
             // Encriptamos la contraseña en SHA-256
             'password_usuario'=> hash('sha256', $this->request->getPost('password_usuario')),
             'id_rol'          => 58, // Forzamos el rol 58 (Cliente) para que no se registren como administradores
-            'estatus_usuario' => 1   // Lo activamos inmediatamente
+            'estatus_usuario' =>- 1   // Por defecto Deshabilitado/Pendiente, el operador deberá validar su cuenta para activarla
         ];
 
         $usuariosModel->insert($datosAGuardar);

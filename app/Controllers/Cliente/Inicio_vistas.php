@@ -7,9 +7,9 @@ use App\Controllers\BaseController;
 class Inicio_vistas extends BaseController
 {
     public function inicio()
-{
-    return view('Cliente/Inicio');
-}
+    {
+        return view('Cliente/Inicio');
+    }
 
     public function login()
     {
