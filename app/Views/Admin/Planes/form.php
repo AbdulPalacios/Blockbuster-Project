@@ -36,19 +36,21 @@
                             <input type="number" step="0.01" name="precio_plan" class="form-control dark-input" required value="<?= isset($plan) ? $plan->precio_plan : '' ?>">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Límite (Pantallas)</label>
+                            <label>Límite de Peliculas</label>
                             <input type="number" name="cantidad_limite_plan" class="form-control dark-input" required value="<?= isset($plan) ? $plan->cantidad_limite_plan : '' ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Tipo de Plan</label>
-                        <div class="form-group">
-                            <label>Duración del Plan (En Semanas)</label>
-                            <input type="number" name="tipo_plan" class="form-control dark-input d-block" min="1" required value="<?= isset($plan) ? $plan->tipo_plan : '' ?>">
-                            <small style="color: #b7b7b7;">Ejemplo: Escribe 4 para un mes, 52 para un año.</small>
-                        </div>
-                    </div>
+    <label>Duración del Plan</label>
+    <select name="tipo_plan" class="form-control dark-input d-block" required>
+        <option value="">Selecciona una opción</option>
+        <option value="8" <?= (isset($plan) && $plan->tipo_plan == 8) ? 'selected' : '' ?>>Semanal</option>
+        <option value="16" <?= (isset($plan) && $plan->tipo_plan == 16) ? 'selected' : '' ?>>Mensual</option>
+        <option value="32" <?= (isset($plan) && $plan->tipo_plan == 32) ? 'selected' : '' ?>>Anual</option>
+    </select>
+    <small style="color: #b7b7b7;">Selecciona una duración.</small>
+</div>
 
                     <div class="form-group">
                         <label>Estatus</label>

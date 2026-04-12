@@ -6,13 +6,14 @@ use App\Controllers\BaseController;
 
 class Perfil extends BaseController
 {
-    public function index()
+ public function index()
 {
     if (!session()->get('isLoggedIn')) {
         return redirect()->to('/login');
     }
 
     $db = \Config\Database::connect();
+    $idUsuario = session()->get('id_usuario');
 
     $plan = $db->query("
         SELECT 
@@ -20,16 +21,19 @@ class Perfil extends BaseController
             planes.cantidad_limite_plan,
             planes.tipo_plan,
             usuarios_planes.fecha_registro_plan,
-            usuarios_planes.fecha_fin_plan
+            usuarios_planes.fecha_fin_plan,
+            usuarios_planes.contenidos_usados,
+            usuarios_planes.fecha_inicio_conteo
         FROM usuarios_planes
         INNER JOIN planes ON planes.id_plan = usuarios_planes.id_plan
-        WHERE usuarios_planes.id_usuario = 3
+        WHERE usuarios_planes.id_usuario = ?
+        ORDER BY usuarios_planes.id_usuario_plan DESC
         LIMIT 1
-    ")->getRow();
+    ", [$idUsuario])->getRow();
 
- return view('Cliente/perfil', [
-    'plan' => $plan
-]);
+    return view('Cliente/perfil', [
+        'plan' => $plan
+    ]);
 }
 
     public function actualizar()

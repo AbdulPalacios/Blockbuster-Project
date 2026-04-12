@@ -757,9 +757,8 @@
                                 <li>
                                     <a href="<?= base_url('categorias') ?>">CATEGORIAS <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="#">Comedia</a></li>
-                                        <li><a href="#">Acción</a></li>
-                                        <li><a href="#">Amor</a></li>
+                                      <li><a href="<?= base_url('perfil') ?>">Hola, <?= esc(session()->get('nombre')) ?></a></li>
+                                            <li><a href="<?= base_url('logout') ?>">Cerrar sesión</a></li>
 
                                         <?php if (!session()->get('isLoggedIn')): ?>
                                             <li><a href="<?= base_url('signup') ?>">Registrarse</a></li>
@@ -879,7 +878,7 @@
                         <h3 class="profile-name"><?= esc($nombreCompleto) ?></h3>
                         <div class="profile-role"><?= esc($rolTexto) ?></div>
                         <div class="profile-user-meta">
-                            Miembro activo de Blockbuster
+                            Miembro activo.
                         </div>
 
                         <div class="profile-side-buttons">

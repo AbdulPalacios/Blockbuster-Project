@@ -12,8 +12,9 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Cliente\Inicio_vistas::inicio');
 $routes->get('login', 'AuthController::index');
 $routes->get('signup', 'Cliente\Inicio_vistas::signup');
-$routes->get('categorias', 'Cliente\Inicio_vistas::categorias');
+$routes->get('categorias', 'Cliente\CategoriasController::index');
 $routes->get('blog', 'Cliente\Inicio_vistas::blog');
+$routes->get('streaming/(:num)', 'Cliente\StreamingController::detalle/$1');
 
 // RUTAS DE AUTENTICACIÓN
 $routes->post('auth/loginProcess', 'AuthController::loginProcess');

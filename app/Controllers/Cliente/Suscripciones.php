@@ -15,14 +15,14 @@ class Suscripciones extends BaseController
         $db = \Config\Database::connect();
 
         $idUsuario = session()->get('id_usuario');
-        $idPlan = trim($this->request->getPost('id_plan_solicitado'));
-        $nombreTarjeta = trim($this->request->getPost('nombre_tarjeta'));
-        $numeroTarjeta = trim($this->request->getPost('numero_tarjeta'));
-        $vencimientoTarjeta = trim($this->request->getPost('vencimiento_tarjeta'));
-        $cvvTarjeta = trim($this->request->getPost('cvv_tarjeta'));
+        $idPlan = trim((string) $this->request->getPost('id_plan_solicitado'));
+        $nombreTarjeta = trim((string) $this->request->getPost('nombre_tarjeta'));
+        $numeroTarjeta = trim((string) $this->request->getPost('numero_tarjeta'));
+        $vencimientoTarjeta = trim((string) $this->request->getPost('vencimiento_tarjeta'));
+        $cvvTarjeta = trim((string) $this->request->getPost('cvv_tarjeta'));
 
-        if (empty($idPlan)) {
-            return redirect()->to('/blog')->with('error', 'No se recibió el plan solicitado.');
+        if ($idUsuario === null || empty($idPlan)) {
+            return redirect()->to('/blog')->with('error', 'No se recibió correctamente la solicitud del plan.');
         }
 
         if (!preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/', $nombreTarjeta)) {
@@ -43,11 +43,12 @@ class Suscripciones extends BaseController
 
         $plan = $db->table('planes')
             ->where('id_plan', $idPlan)
+            ->where('estatus_plan', 1)
             ->get()
             ->getRow();
 
         if (!$plan) {
-            return redirect()->to('/blog')->with('error', 'El plan seleccionado no existe.');
+            return redirect()->to('/blog')->with('error', 'El plan seleccionado no existe o no está activo.');
         }
 
         $ultimos4 = substr(preg_replace('/\D/', '', $numeroTarjeta), -4);
@@ -55,11 +56,11 @@ class Suscripciones extends BaseController
 
         $db->table('pagos')->insert([
             'fecha_registro_pago' => date('Y-m-d'),
-            'estatus_pago' => 0,
-            'monto_pago' => $plan->precio_plan,
-            'tarjeta_pago' => $tarjetaMask,
-            'id_usuario' => $idUsuario,
-            'id_plan' => $idPlan
+            'estatus_pago'        => 0,
+            'monto_pago'          => $plan->precio_plan,
+            'tarjeta_pago'        => $tarjetaMask,
+            'id_usuario'          => $idUsuario,
+            'id_plan'             => $idPlan
         ]);
 
         return redirect()->to('/blog')->with('success', 'Tu solicitud fue enviada al operador correctamente.');

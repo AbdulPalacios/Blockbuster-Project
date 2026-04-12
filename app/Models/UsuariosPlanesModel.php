@@ -10,6 +10,11 @@ class UsuariosPlanesModel extends Model
     protected $returnType       = 'object';
     protected $useAutoIncrement = true;
     protected $allowedFields    = [
-        'fecha_registro_plan', 'fecha_fin_plan', 'id_usuario', 'id_plan'
+        'fecha_registro_plan',
+        'fecha_fin_plan',
+        'id_usuario',
+        'id_plan',
+        'contenidos_usados',
+        'fecha_inicio_conteo'
     ];
 }

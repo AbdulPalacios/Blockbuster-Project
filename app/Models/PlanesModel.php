@@ -7,9 +7,13 @@ class PlanesModel extends Model
 {
     protected $table            = 'planes';
     protected $primaryKey       = 'id_plan';
-    protected $returnType       = 'object'; 
+    protected $returnType       = 'object';
     protected $useAutoIncrement = true;
     protected $allowedFields    = [
-        'estatus_plan', 'nombre_plan', 'precio_plan', 'cantidad_limite_plan', 'tipo_plan'
+        'estatus_plan',
+        'nombre_plan',
+        'precio_plan',
+        'cantidad_limite_plan',
+        'tipo_plan'
     ];
 }

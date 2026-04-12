@@ -47,9 +47,7 @@
                                 <li>
                                     <a href="<?= base_url('categorias') ?>">CATEGORIAS <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="#">Comedia</a></li>
-                                        <li><a href="#">Acción</a></li>
-                                        <li><a href="#">Amor</a></li>
+                                      
 
                                         <?php if (!session()->get('isLoggedIn')): ?>
                                             <li><a href="<?= base_url('signup') ?>">Sign Up</a></li>

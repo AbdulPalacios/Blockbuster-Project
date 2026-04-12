@@ -476,10 +476,7 @@
                                 <li>
                                     <a href="<?= base_url('categorias') ?>">CATEGORIAS <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="#">Comedia</a></li>
-                                        <li><a href="#">Acción</a></li>
-                                        <li><a href="#">Amor</a></li>
-
+                    
                                         <?php if (!session()->get('isLoggedIn')): ?>
                                             <li><a href="<?= base_url('signup') ?>">Sign Up</a></li>
                                             <li><a href="<?= base_url('login') ?>">Login</a></li>
@@ -554,6 +551,7 @@
                     if ($plan->tipo_plan == 8) $tipoTexto = 'Semanal';
                     if ($plan->tipo_plan == 16) $tipoTexto = 'Mensual';
                     if ($plan->tipo_plan == 32) $tipoTexto = 'Anual';
+                  
 
                     $destacado = strtolower(trim($plan->nombre_plan)) === 'premium';
                 ?>

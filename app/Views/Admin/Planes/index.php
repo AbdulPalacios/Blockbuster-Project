@@ -1,4 +1,12 @@
 <?php helper('url'); ?>
+
+<?php
+$tipos_plan = [
+    8 => 'Semanal',
+    16 => 'Mensual',
+    32 => 'Anual'
+];
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -63,7 +71,9 @@
     <section class="product spad">
         <div class="container">
             <?php if(session()->getFlashdata('success')): ?>
-                <div class="alert alert-success" style="background-color: #1ed760; color: white; border: none;"><?= session()->getFlashdata('success') ?></div>
+                <div class="alert alert-success" style="background-color: #1ed760; color: white; border: none;">
+                    <?= session()->getFlashdata('success') ?>
+                </div>
             <?php endif; ?>
 
             <div class="row mb-4 align-items-center">
@@ -73,7 +83,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 text-right">
-                     <a href="<?= base_url('admin/planes/crear') ?>" class="btn" style="background: transparent; border: 2px solid #e53637; color: white; font-weight: bold; padding: 8px 20px; border-radius: 4px;">
+                    <a href="<?= base_url('admin/planes/crear') ?>" class="btn" style="background: transparent; border: 2px solid #e53637; color: white; font-weight: bold; padding: 8px 20px; border-radius: 4px;">
                         <i class="fa fa-plus"></i> Nuevo Plan
                     </a>
                 </div>
@@ -83,21 +93,37 @@
                 <table class="table table-dark table-hover" style="background-color: #1a1e27;">
                     <thead style="background-color: #e53637;">
                         <tr>
-                            <th>ID</th><th>Nombre</th><th>Precio</th><th>Límite</th><th>Tipo Plan Semanal</th><th>Estatus</th><th class="text-center">Acciones</th>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Límite</th>
+                            <th>Tipo de Plan</th>
+                            <th>Estatus</th>
+                            <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach($planes as $p): ?>
                         <tr>
                             <td><?= $p->id_plan ?></td>
-                            <td><strong><?= $p->nombre_plan ?></strong></td>
-                            <td style="color: #1ed760; font-weight: bold;">$<?= number_format($p->precio_plan, 2) ?></td>
-                            <td><?= $p->cantidad_limite_plan ?> Peliculas/series</td>
-                            <td><?= $p->tipo_plan ?></td>
-                            <td><?= $p->estatus_plan == 1 ? '<span class="badge" style="background-color: #1ed760;">Activo</span>' : '<span class="badge badge-secondary">Inactivo</span>' ?></td>
+                            <td><strong><?= esc($p->nombre_plan) ?></strong></td>
+                            <td style="color: #1ed760; font-weight: bold;">
+                                $<?= number_format($p->precio_plan, 2) ?>
+                            </td>
+                            <td><?= esc($p->cantidad_limite_plan) ?> Peliculas/series</td>
+                            <td><?= $tipos_plan[$p->tipo_plan] ?? 'Desconocido' ?></td>
+                            <td>
+                                <?= $p->estatus_plan == 1
+                                    ? '<span class="badge" style="background-color: #1ed760;">Activo</span>'
+                                    : '<span class="badge badge-secondary">Inactivo</span>' ?>
+                            </td>
                             <td class="text-center">
-                                <a href="<?= base_url('admin/planes/editar/'.$p->id_plan) ?>" class="btn btn-sm btn-warning" style="color: #000; font-weight: bold;"><i class="fa fa-edit"></i></a>
-                                <a href="<?= base_url('admin/planes/eliminar/'.$p->id_plan) ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar?');"><i class="fa fa-trash"></i></a>
+                                <a href="<?= base_url('admin/planes/editar/'.$p->id_plan) ?>" class="btn btn-sm btn-warning" style="color: #000; font-weight: bold;">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a href="<?= base_url('admin/planes/eliminar/'.$p->id_plan) ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar?');">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -112,6 +138,7 @@
             <p style="color: #b7b7b7;">&copy; <?= date('Y') ?> Admin Blockbuster. Todos los derechos reservados.</p>
         </div>
     </footer>
+
     <script src="<?= base_url('assets/js/jquery-3.3.1.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/jquery.slicknav.js') ?>"></script>
