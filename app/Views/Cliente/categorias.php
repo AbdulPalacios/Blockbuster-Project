@@ -200,6 +200,40 @@
 .sidebar-link .product__sidebar__comment__item__text span {
     color: #b7b7b7;
 }
+
+.product__sidebar__view__item,
+.product__sidebar__comment__item,
+.product__sidebar__categories,
+.product__sidebar__view,
+.product__sidebar {
+    overflow: visible !important;
+}
+
+
+.product__sidebar__view__item h5,
+.product__sidebar__view__item h5 a,
+.product__sidebar__comment__item__text h5,
+.product__sidebar__comment__item__text h5 a {
+    line-height: 1.6 !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.sidebar-link .product__sidebar__comment__item__text h5 {
+    line-height: 1.6 !important;
+}
+
+.product__sidebar ul li,
+.product__sidebar li {
+    line-height: normal !important;
+    overflow: visible !important;
+}
+
+
+h5, a {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
     </style>
 </head>
 

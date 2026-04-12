@@ -21,6 +21,68 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>" type="text/css">
 </head>
 
+<style> 
+    .normal-breadcrumb {
+    position: relative;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+
+    background-size: cover;
+    background-position: center 35%;
+    background-repeat: no-repeat;
+}
+
+
+.normal-breadcrumb::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.75) 0%,
+        rgba(0,0,0,0.5) 40%,
+        rgba(0,0,0,0.85) 100%
+    );
+}
+
+
+.normal-breadcrumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: radial-gradient(
+        circle at center,
+        rgba(255,255,255,0.08),
+        transparent 60%
+    );
+}
+
+.normal-breadcrumb .container,
+.normal-breadcrumb .breadcrumb__text {
+    position: relative;
+    z-index: 2;
+}
+
+
+.normal-breadcrumb h2 {
+    font-size: 40px;
+    font-weight: 700;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.9);
+}
+
+
+.normal-breadcrumb p {
+    font-size: 18px;
+    opacity: 0.9;
+    text-shadow: 0 5px 20px rgba(0,0,0,0.8);
+}
+</style>
 <body>
     <div id="preloder">
         <div class="loader"></div>
@@ -68,7 +130,7 @@
         </div>
     </header>
 
-    <section class="normal-breadcrumb set-bg" data-setbg="<?= base_url('assets/img/normal-breadcrumb.jpg') ?>">
+    <section class="normal-breadcrumb set-bg" data-setbg="<?= base_url('assets/img/123.jpg') ?>">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
