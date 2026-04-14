@@ -37,6 +37,10 @@ $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Adm
     // El Dashboard
     $routes->get('dashboard', 'DashboardController::index'); 
 
+    // Módulo Perfil Admin
+    $routes->get('perfil', 'PerfilController::index');
+    $routes->post('perfil/actualizar', 'PerfilController::actualizar');
+
     // El CRUD de Géneros
     $routes->get('generos', 'GenerosController::index');
     $routes->get('generos/crear', 'GenerosController::create');
@@ -82,4 +86,8 @@ $routes->group('operador', ['filter' => 'auth', 'namespace' => 'App\Controllers\
     $routes->get('pagos', 'PagosController::index');
     $routes->get('pagos/aprobar/(:num)/(:num)/(:num)', 'PagosController::aprobar/$1/$2/$3');
     $routes->get('pagos/rechazar/(:num)', 'PagosController::rechazar/$1');
+
+    // Módulo Perfil Operador
+    $routes->get('perfil', 'PerfilController::index');
+    $routes->post('perfil/actualizar', 'PerfilController::actualizar');
 });

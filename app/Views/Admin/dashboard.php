@@ -306,20 +306,31 @@
                                         <li><a href="<?= base_url('admin/streaming') ?>">Streaming</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">REPORTES</a></li>
+                                <li><a href="<?php echo base_url('admin/perfil'); ?>">PERFIL</a></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
 
                 <div class="col-lg-2">
-                    <div class="header__right" style="display: flex; align-items: center; gap: 15px;">
-                        <span style="color: white; font-weight: 600; font-size: 14px; white-space: nowrap;">
-                            Administrador: <?= esc(session()->get('nombre')) ?>
-                        </span>
+                    <div class="header__right" style="display: flex; align-items: center; justify-content: flex-end; gap: 15px;">
+                        
+                        <a href="<?= base_url('admin/perfil') ?>" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                            
+                            <?php $fotoAdmin = session()->get('imagen_usuario') ? base_url('uploads/perfiles/'.session()->get('imagen_usuario')) : base_url('assets/img/default-avatar.png'); ?>
+                            
+                            <img src="<?= $fotoAdmin ?>" alt="Avatar" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 2px solid #e53637;">
+                            
+                            <span style="color: white; font-weight: 600; font-size: 14px; white-space: nowrap;">
+                                <?= esc(session()->get('nombre')) ?>
+                            </span>
+                            
+                        </a>
+
                         <a href="<?= base_url('logout') ?>" style="background: #e53637; color: white; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 15px; font-weight: 600;">
                             SALIR
                         </a>
+                        
                     </div>
                 </div>
             </div>

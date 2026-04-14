@@ -37,11 +37,24 @@
                     </div>
                 </div>
                 <div class="col-lg-2">
-                    <div class="header__right" style="display: flex; align-items: center; gap: 15px;">
-                        <span style="color: #f39c12; font-weight: 600; font-size: 14px; white-space: nowrap;">
-                            <i class="fa fa-user"></i> <?= esc(session()->get('nombre')) ?>
-                        </span>
-                        <a href="<?= base_url('logout') ?>" style="background: #e53637; color: white; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 15px; font-weight: 600;">SALIR</a>
+                    <div class="header__right" style="display: flex; align-items: center; justify-content: flex-end; gap: 15px;">
+                        
+                        <a href="<?= base_url('operador/perfil') ?>" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                            
+                            <?php $fotoOperador = session()->get('imagen_usuario') ? base_url('uploads/perfiles/'.session()->get('imagen_usuario')) : base_url('assets/img/default-avatar.png'); ?>
+                            
+                            <img src="<?= $fotoOperador ?>" alt="Avatar" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 2px solid #e53637;">
+                            
+                            <span style="color: white; font-weight: 600; font-size: 14px; white-space: nowrap;">
+                                <?= esc(session()->get('nombre')) ?>
+                            </span>
+                            
+                        </a>
+
+                        <a href="<?= base_url('logout') ?>" style="background: #e53637; color: white; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 15px; font-weight: 600;">
+                            SALIR
+                        </a>
+                        
                     </div>
                 </div>
             </div>
