@@ -14,6 +14,8 @@ class PlanesModel extends Model
         'nombre_plan',
         'precio_plan',
         'cantidad_limite_plan',
-        'tipo_plan'
+        'tipo_plan',
+        'descripcion_plan',
+        'fecha_registro_plan'
     ];
 }

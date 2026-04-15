@@ -113,8 +113,8 @@ class StreamingController extends BaseController
                 'id_usuario'            => $idUsuario,
                 'id_streaming'          => $id,
                 'fecha_inicio_alquiler' => date('Y-m-d'),
-                'fecha_fin_alquiler'    => date('Y-m-d', strtotime('+7 days')),
-                'estatus_alquiler'      => 1
+                'fecha_fin_alquiler'    => date('Y-m-d', strtotime('+5 days')),
+                'estatus_alquiler'      => -1
             ]);
 
             $restantes = $limite - ($usados + 1);
