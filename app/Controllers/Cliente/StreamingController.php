@@ -33,6 +33,16 @@ class StreamingController extends BaseController
         return redirect()->to('login')->with('error', 'Debes iniciar sesión para ver este contenido.');
     }
 
+    if ($id === null || !is_numeric($id)) {
+        throw PageNotFoundException::forPageNotFound('Contenido no encontrado');
+    }
+
+    $streaming = $this->streamingModel->where('id_streaming', $id)->first();
+
+    if (!$streaming || (int)$streaming->estatus_streaming !== 1) {
+        throw PageNotFoundException::forPageNotFound('Contenido no encontrado');
+    }
+
     $idUsuario = $session->get('id_usuario');
     $idRol = (int) $session->get('id_rol');
 
@@ -85,30 +95,38 @@ class StreamingController extends BaseController
         $usados = (int)($suscripcion->contenidos_usados ?? 0);
         $limite = (int)($plan->cantidad_limite_plan ?? 0);
 
-        if ($usados >= $limite) {
-            return redirect()->to('categorias')->with('error', 'Ya alcanzaste el límite de contenidos disponibles de tu plan esta semana.');
+        $alquileresModel = new \App\Models\AlquileresModel();
+        $yaVista = $alquileresModel->where('id_usuario', $idUsuario)
+                                   ->where('id_streaming', $id)
+                                   ->first();
+
+        if (!$yaVista) {
+            if ($usados >= $limite) {
+                return redirect()->to('categorias')->with('error', 'Ya alcanzaste el límite de contenidos disponibles de tu plan esta semana.');
+            }
+
+            $this->usuariosPlanesModel->update($suscripcion->id_usuario_plan, [
+                'contenidos_usados' => $usados + 1
+            ]);
+
+            $alquileresModel->insert([
+                'id_usuario'            => $idUsuario,
+                'id_streaming'          => $id,
+                'fecha_inicio_alquiler' => date('Y-m-d'),
+                'fecha_fin_alquiler'    => date('Y-m-d', strtotime('+7 days')),
+                'estatus_alquiler'      => 1
+            ]);
+
+            $restantes = $limite - ($usados + 1);
+        } else {
+            $restantes = $limite - $usados;
         }
 
-        $this->usuariosPlanesModel->update($suscripcion->id_usuario_plan, [
-            'contenidos_usados' => $usados + 1
-        ]);
-
-        $restantes = $limite - ($usados + 1);
     } else {
         $suscripcion = null;
         $plan = null;
         $restantes = 'Ilimitado';
     }
-
-   if ($id === null || !is_numeric($id)) {
-    throw PageNotFoundException::forPageNotFound('Contenido no encontrado');
-}
-
-$streaming = $this->streamingModel->where('id_streaming', $id)->first();
-
-if (!$streaming || (int)$streaming->estatus_streaming !== 1) {
-    throw PageNotFoundException::forPageNotFound('Contenido no encontrado');
-}
 
     $genero = null;
     if (!empty($streaming->id_genero)) {
