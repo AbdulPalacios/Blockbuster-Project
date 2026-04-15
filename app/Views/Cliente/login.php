@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/owl.carousel.min.css') ?>" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/css/slicknav.min.css') ?>" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <style> 
@@ -149,12 +150,6 @@
                 <div class="col-lg-6">
                     <div class="login__form">
                         <h3>INGRESA A TU CUENTA</h3>
-                        
-                        <?php if(session()->getFlashdata('error')): ?>
-                            <div class="alert alert-danger">
-                                <?= session()->getFlashdata('error') ?>
-                            </div>
-                        <?php endif; ?>
 
                         <form action="<?= base_url('auth/loginProcess') ?>" method="post">
                             <div class="input__item">
@@ -242,6 +237,22 @@
     <script src="<?= base_url('assets/js/jquery.slicknav.js') ?>"></script>
     <script src="<?= base_url('assets/js/owl.carousel.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/main.js') ?>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "timeOut": "3000",
+            "preventDuplicates": true
+        };
+        <?php if(session()->getFlashdata('success')): ?>
+            toastr.success('<?= session()->getFlashdata('success') ?>', '¡Éxito!');
+        <?php endif; ?>
+        <?php if(session()->getFlashdata('error')): ?>
+            toastr.error('<?= session()->getFlashdata('error') ?>', 'Error');
+        <?php endif; ?>
+    </script>
 </body>
 
 </html>

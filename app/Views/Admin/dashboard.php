@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/font-awesome.min.css') ?>" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/css/elegant-icons.css') ?>" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 <style> 
     .normal-breadcrumb {
@@ -443,5 +444,24 @@
     <script src="<?= base_url('assets/js/jquery-3.3.1.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/main.js') ?>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "timeOut": "4000",
+            "preventDuplicates": true
+        };
+        
+        // Atrapa el mensaje de éxito del Login o de otras redirecciones
+        <?php if(session()->getFlashdata('success')): ?>
+            toastr.success('<?= session()->getFlashdata('success') ?>');
+        <?php endif; ?>
+
+        <?php if(session()->getFlashdata('error')): ?>
+            toastr.error('<?= session()->getFlashdata('error') ?>');
+        <?php endif; ?>
+    </script>
 </body>
 </html>

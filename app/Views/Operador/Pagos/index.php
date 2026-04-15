@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/font-awesome.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 <body>
     <header class="header">
@@ -119,17 +120,20 @@
 
     <script src="<?= base_url('assets/js/jquery-3.3.1.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
-        const Toast = Swal.mixin({
-            toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true,
-            background: '#1a1e27', color: '#ffffff', iconColor: '#1ed760'
-        });
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "timeOut": "3000",
+            "preventDuplicates": true
+        };
         <?php if(session()->getFlashdata('success')): ?>
-            Toast.fire({ icon: 'success', title: '<?= session()->getFlashdata('success') ?>' });
+            toastr.success('<?= session()->getFlashdata('success') ?>', '¡Éxito!');
         <?php endif; ?>
         <?php if(session()->getFlashdata('error')): ?>
-            Toast.fire({ icon: 'error', iconColor: '#e53637', title: '<?= session()->getFlashdata('error') ?>' });
+            toastr.error('<?= session()->getFlashdata('error') ?>', 'Error');
         <?php endif; ?>
     </script>
 </body>

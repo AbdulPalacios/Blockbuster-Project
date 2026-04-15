@@ -50,11 +50,11 @@ class AuthController extends BaseController
 
         $session->set($sesionData);
 
-        // Redirecciones separadas por rol
+        // Redirecciones separadas por rol con mensajes para el Toastr
         if ($usuario->id_rol == 745) {
-            return redirect()->to('admin/dashboard');
+            return redirect()->to('admin/dashboard')->with('success', '¡Bienvenido al Panel de Administración!');
         } elseif ($usuario->id_rol == 125) {
-            return redirect()->to('operador/dashboard');
+            return redirect()->to('operador/dashboard')->with('success', '¡Bienvenido, Operador!');
         } elseif ($usuario->id_rol == 58) {
             return redirect()->to('/')->with('success', 'Sesión iniciada exitosamente');
         } else {

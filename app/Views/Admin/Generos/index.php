@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/font-awesome.min.css') ?>" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/css/elegant-icons.css') ?>" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 <style>
     .normal-breadcrumb {
@@ -385,11 +386,7 @@
 
     <section class="product spad">
         <div class="container">
-           <?php if(session()->getFlashdata('success')): ?>
-    <div class="generos-alert">
-        <?= session()->getFlashdata('success') ?>
-    </div>
-<?php endif; ?>
+           
 
 <div class="row mb-4 align-items-center generos-toolbar">
     <div class="col-lg-8 col-md-8 col-sm-8">
@@ -478,5 +475,21 @@
     <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/jquery.slicknav.js') ?>"></script>
     <script src="<?= base_url('assets/js/main.js') ?>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "timeOut": "3000",
+            "preventDuplicates": true
+        };
+        <?php if(session()->getFlashdata('success')): ?>
+            toastr.success('<?= session()->getFlashdata('success') ?>', '¡Éxito!');
+        <?php endif; ?>
+        <?php if(session()->getFlashdata('error')): ?>
+            toastr.error('<?= session()->getFlashdata('error') ?>', 'Error');
+        <?php endif; ?>
+    </script>
 </body>
 </html>

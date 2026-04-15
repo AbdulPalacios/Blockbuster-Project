@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/owl.carousel.min.css') ?>" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/css/slicknav.min.css') ?>" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <style>
     :root {
@@ -1116,6 +1117,22 @@
         });
     }
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "timeOut": "3000",
+            "preventDuplicates": true
+        };
+        <?php if(session()->getFlashdata('success')): ?>
+            toastr.success('<?= session()->getFlashdata('success') ?>', '¡Éxito!');
+        <?php endif; ?>
+        <?php if(session()->getFlashdata('error')): ?>
+            toastr.error('<?= session()->getFlashdata('error') ?>', 'Error');
+        <?php endif; ?>
+    </script>
 </body>
 
 </html>
